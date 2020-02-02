@@ -1,3 +1,5 @@
+
+'use strict';
 const Categories = require('../categories/categories.js');
 
 describe('Categories Model', () => {
@@ -9,7 +11,7 @@ describe('Categories Model', () => {
   });
 
   it('test post() ', () => {
-    let obj = { name: 'Test Category' };
+    let obj = { name: 'Test Category',};
     return categories.create(obj)
       .then(record => {
         Object.keys(obj).forEach(key => {
@@ -20,7 +22,7 @@ describe('Categories Model', () => {
   });
 
   it('test get() ', () => {
-    let obj = { name: 'Test Category' };
+    let obj = { name: 'Test Category',};
     return categories.create(obj)
       .then(record => {
         return categories.get(record._id)
@@ -32,27 +34,28 @@ describe('Categories Model', () => {
       });
   });
 
-});
-it('test update ()', () => {
-  let obj = { name: 'Test category' };
-  return categories.create(obj)
-    .then(data => {
-      newObj = { name: 'new category' };
-      return categories.update(data.id, newObj)
-        .then(data => {
+
+  it('test update ()', () => {
+    let obj = { name: 'Test category',};
+    return categories.create(obj)
+      .then(data => {
+        let newObj = { name: 'new category', };
+        return categories.update(data.id, newObj)
+          .then(data => {
             expect(data.name).toEqual('new category');
           });
-        });
+      });
 
-    });
+  });
 
-    it('test  delete() ', () => {
-      let obj = { name: 'Test Category' };
-      return categories.create(obj)
-        .then(data => {
-          return categories.delete(data)
-            .then((deletedItem) => {
-              expect(deletedItem).toBeUndefined();
-            });
-        });
-    });
+  it('test  delete() ', () => {
+    let obj = { name: 'Test Category', };
+    return categories.create(obj)
+      .then(data => {
+        return categories.delete(data)
+          .then((deletedItem) => {
+            expect(deletedItem).toBeUndefined();
+          });
+      });
+  });
+});
