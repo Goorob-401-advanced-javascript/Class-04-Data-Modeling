@@ -2,7 +2,7 @@
 
 const DataModel = require('../memory-data-model.js');
 
-class Categories extends DataModel {
+class Products extends DataModel {
   constructor() {
     super();
     this.schema = {
